@@ -13,9 +13,13 @@
             <a href="/">Home</a>
             <a href="">Dashboard</a>
             <a href="api/users/login">Login</a>
+            {{#if logged_in}}
             <a href="api/users/logout">Logout</a>
+            {{/if}}
         </header>
     </div>
-    
+    <main>
+        {{ body }}
+    </main>
 </body>
 </html>

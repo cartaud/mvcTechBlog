@@ -1,18 +1,23 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, Post } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
     try {
-        const userData = await User.findAll({ //instead of loading user data here, we want to load all post on initial load
-            attributes: { exclude: ['password'] },
-            order: [['name', 'ASC']],
+        const postData = await Post.findAll({ //instead of loading user data here, we want to load all post on initial load
+            limit: 10,
+            order: [['updatedAt', 'DESC']],
+            include: [
+                {
+                  model: User,
+                  attributes: ['username'],
+                },
         });
 
-        const users = userData.map((project) => project.get({ plain: true}));//chang users to post
+        const posts = postData.map((post) => post.get({ plain: true}));//chang users to post
 
         res.render('homepage', {
-            users, //put post data here 
+            posts, //put post data here 
             logged_in: req.session.logged_in,
         });
     } catch (err) {

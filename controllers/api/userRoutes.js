@@ -43,4 +43,24 @@ router.post('/logout', (req, res) => {
     }
 });
 
+router.post('/signup', (req, res) => {
+    const checkUser = User.findOne({ where: { username: req.body.username } })
+    if (!checkUser) {
+        res
+              .status(400)
+              .json({ message: 'This username already exist, please try a different username' });
+            return;
+    } else {
+        const userData = await User.create(req.body);
+
+        req.session.save(() => {
+            req.session.user_id = userData.id;
+            req.session.logged_in = true;
+      
+            res.status(200).json(userData);
+          });
+    }
+    
+})
+
 module.exports = router;
