@@ -10,16 +10,19 @@
 <body>
     <div>
         <header>
-            <a href="/">Home</a>
-            <a href="">Dashboard</a>
-            <a href="api/users/login">Login</a>
-            {{#if logged_in}}
-            <a href="api/users/logout">Logout</a>
-            {{/if}}
+            <nav> 
+                <a href="/">Home</a>
+                <a href="">Dashboard</a>
+                <a href="/login">Login</a>
+                {{#if logged_in}}
+                <a href="api/users/logout">Logout</a>
+                {{/if}}
+            </nav>
+           <h1>The Tech Blog</h1>
         </header>
     </div>
     <main>
-        {{ body }}
+        {{{ body }}}
     </main>
 </body>
 </html>

@@ -15,26 +15,28 @@ Comments.init (
             type: DataTypes.STRING,
             allowNull: false,
           },
-          createdAt: {
+          created_at: {
             type: DataTypes.DATE,
             allowNull: false,
+            defaultValue: DataTypes.NOW,
           },
-          updatedAt: {
+          updated_at: {
             type: DataTypes.DATE,
             allowNull: false,
+            defaultValue: DataTypes.NOW,
           },
-          postId: {
+          post_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'post',
-                key: 'id'
+              model: 'post',
+              key: 'id'
             }
           },
-          userId: {
+          user_id: {
             type: DataTypes.INTEGER,
             references: {
-            model: 'user',
-            key: 'id'
+              model: 'user',
+              key: 'id'
             }
         },
     },
@@ -43,7 +45,7 @@ Comments.init (
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'post',
+        modelName: 'comments',
     }
 )
 

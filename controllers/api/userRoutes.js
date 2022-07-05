@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+const withAuth = require('../../utils/auth');
+const bcrypt = require('bcrypt');
 
 router.post('/login', async (req, res) => {
     try {
@@ -33,7 +35,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.post('/logout', (req, res) => {
+router.post('/logout', withAuth, (req, res) => {
     if (req.session.logged_in) {
         req.session.destroy(() => {
             res.status(204).end();
@@ -43,22 +45,29 @@ router.post('/logout', (req, res) => {
     }
 });
 
-router.post('/signup', (req, res) => {
-    const checkUser = User.findOne({ where: { username: req.body.username } })
-    if (!checkUser) {
-        res
-              .status(400)
-              .json({ message: 'This username already exist, please try a different username' });
-            return;
-    } else {
-        const userData = await User.create(req.body);
+router.post('/signup', async (req, res) => {
+    try {
+        const checkUser = User.findOne({ where: { username: req.body.username } })
+        if (!checkUser) {
+            res
+                .status(400)
+                .json({ message: 'This username already exist, please try a different username' });
+                return;
+        } else {
+            const newUser = req.body;
+            newUser.password = await bcrypt.hash(req.body.password, 10);
+            const userData = await User.create(newUser);
 
-        req.session.save(() => {
-            req.session.user_id = userData.id;
-            req.session.logged_in = true;
-      
-            res.status(200).json(userData);
-          });
+            req.session.save(() => {
+                req.session.user_id = userData.id;
+                req.session.logged_in = true;
+        
+                res.status(200).json(userData);
+            });
+        }   
+    }
+    catch (err) {
+        res.status(400).json(err);
     }
     
 })

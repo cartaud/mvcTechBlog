@@ -14,3 +14,7 @@ router.post('/post', withAuth, async (req, res) => {
         res.status(400).json(err);
     }
 });
+
+module.exports = router
+
+//create new folder in api called dashboard with /new, /edit/:id routes 
