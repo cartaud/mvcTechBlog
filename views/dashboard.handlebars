@@ -1,4 +1,8 @@
-{{!-- {{#each posts as | post}}
-
-    <button id="new-post">new post</button>
-{{/each}} --}}
+{{#each posts as |post| }}
+<a href="/dashboard/edit/{{post.id}}" class="tan">
+    <div id="post-block">
+        <p>{{post.title}}</p>
+        <p id="post-date">Posted by {{post.user.username}} on {{format_date post.created_at}}</p>
+    </div>
+</a>
+{{/each}}

@@ -48,7 +48,7 @@ router.post('/logout', withAuth, (req, res) => {
 router.post('/signup', async (req, res) => {
     try {
         const checkUser = User.findOne({ where: { username: req.body.username } })
-        if (!checkUser) {
+        if (checkUser) {
             res
                 .status(400)
                 .json({ message: 'This username already exist, please try a different username' });

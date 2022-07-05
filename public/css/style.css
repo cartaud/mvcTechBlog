@@ -20,7 +20,7 @@ header nav {
     font-size: 18px;
 }
 
-header nav a {
+a {
     color: tan;
     text-decoration: none;
 }
@@ -69,7 +69,6 @@ body {
     margin: 10px 20px;
     border: 3px solid black ;
     height: 200px;
-    
 }
 
 #form-container h2 {
@@ -89,5 +88,31 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+.form-group a {
+    color: grey;
+}
+
+#post-block {
+    display: flex;
+    justify-content: space-between;
+    background-color: grey;
+    margin: 20px 40px;
+    padding: 0 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    color: tan;
+}
+
+#form-container.edit-post {
+    height: 300px;
+}
+
+#post-update {
+    margin-bottom: 10px;
+}
+
+
+
 
 

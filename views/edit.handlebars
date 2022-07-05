@@ -1,0 +1,21 @@
+<div id="form-container" class="edit-post">
+<h2>Edit Post</h2>
+
+<form class="login-form">
+    <div class="form-group">
+        <label for="username-login">Title</label>
+        <input class="form-input" type="text" id="username-login" value="{{title}}">
+    </div>
+    <div class="form-group">
+        <label for="password-login">Content</label>
+        <textarea class="form-input" type="text" id="password-login" rows="7">{{body}}</textarea>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit" id="post-update" data-id="{{project.id}}">Update</button>
+        <button class="btn btn-primary" type="submit" id="post-delete" data-id="{{project.id}}">Delete</button>
+    </div>
+</form>
+</div>
+
+
+<script src="./js/edit"></script>
