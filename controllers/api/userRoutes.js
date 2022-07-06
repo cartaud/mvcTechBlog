@@ -3,6 +3,30 @@ const { User } = require('../../models');
 const withAuth = require('../../utils/auth');
 const bcrypt = require('bcrypt');
 
+router.post('/', async (req, res) => {
+    try {
+        const checkUser = await User.findOne({ where: { username: req.body.username } })
+        if (checkUser) {
+            res
+                .status(400)
+                .json({ message: 'This username already exist, please try a different username' });
+                return;
+        } else {
+            const userData = await User.create(req.body);
+
+            req.session.save(() => {
+                req.session.user_id = userData.id;
+                req.session.logged_in = true;
+        
+                res.status(200).json(userData);
+            });
+        }   
+    }
+    catch (err) {
+        res.status(400).json(err);
+    }
+});
+
 router.post('/login', async (req, res) => {
     try {
         const userData = await User.findOne({ where: { username: req.body.username } });
@@ -13,7 +37,6 @@ router.post('/login', async (req, res) => {
               .json({ message: 'Incorrect username or password, please try again' });
             return;
         }
-
         const validPassword = await userData.checkPassword(req.body.password);
 
         if (!validPassword) {
@@ -44,32 +67,5 @@ router.post('/logout', withAuth, (req, res) => {
         res.status(404).end();
     }
 });
-
-router.post('/signup', async (req, res) => {
-    try {
-        const checkUser = User.findOne({ where: { username: req.body.username } })
-        if (checkUser) {
-            res
-                .status(400)
-                .json({ message: 'This username already exist, please try a different username' });
-                return;
-        } else {
-            const newUser = req.body;
-            newUser.password = await bcrypt.hash(req.body.password, 10);
-            const userData = await User.create(newUser);
-
-            req.session.save(() => {
-                req.session.user_id = userData.id;
-                req.session.logged_in = true;
-        
-                res.status(200).json(userData);
-            });
-        }   
-    }
-    catch (err) {
-        res.status(400).json(err);
-    }
-    
-})
 
 module.exports = router;

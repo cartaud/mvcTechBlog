@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const { User, Post } = require('../../models');
+const withAuth = require('../../utils/auth');
 
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     // if (req.session.logged_in) {
     //     res.render('dashboard');
     //     return
@@ -33,7 +34,15 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/edit/:id', async (req, res) => {
+router.get('/new', withAuth, async (req, res) => {
+    try {
+        res.render('newpost')
+    } catch (err) {
+        res.status(500).json(err)
+    }
+})
+
+router.get('/edit/:id', withAuth, async (req, res) => {
     //need a way to verify that the post user id is the same as the current user id to prevent users from editing other user post
     try {
         const postData = await Post.findByPk(req.params.id);
