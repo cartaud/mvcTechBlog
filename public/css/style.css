@@ -38,13 +38,6 @@ body {
     background-color: tan;
 }
 
-#logout {
-    background-color: rgb(81, 32, 32);
-    color: tan;
-    border: none;
-    font-size: 14px;
-}
-
 #post-container {
     margin: 10px 20px;
     border: 3px solid black ;
