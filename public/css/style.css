@@ -38,11 +38,24 @@ body {
     background-color: tan;
 }
 
+input {
+    padding: 2px;
+}
+
+textarea:focus, input:focus {
+    outline: none;
+}
+
+button {
+    padding: 5px;
+}
+
 #post-container {
     margin: 10px 20px;
     border: 3px solid black ;
     display: flex;
     flex-direction: column;
+    padding-bottom: 10px;
 }
 
 
@@ -69,13 +82,16 @@ body {
 #form-container {
     margin: 10px 20px;
     border: 3px solid black ;
-    height: 200px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
 }
 
 #form-container h2 {
     background-color: rgb(81, 32, 32);
     margin-top: 0;
-    padding-left: 10px;
+    padding: 10px;
+    color: tan;
 }
 
 .login-form {
@@ -88,10 +104,15 @@ body {
 .form-group {
     display: flex;
     flex-direction: column;
+    padding: 3px;
 }
 
 .form-group a {
     color: grey;
+}
+
+.post-form {
+    padding: 0 10px;
 }
 
 #post-block {
@@ -103,10 +124,6 @@ body {
     font-size: 14px;
     border-radius: 5px;
     color: tan;
-}
-
-#form-container.edit-post {
-    height: 300px;
 }
 
 #post-update {
@@ -147,6 +164,7 @@ body {
 
 main {
     height: 100%;
+    padding-top: 10px;
 }
 
 
