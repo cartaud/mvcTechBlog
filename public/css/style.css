@@ -69,14 +69,14 @@ button {
     align-items: center;
     background-color: rgb(81, 32, 32);
     color: grey;
-    height: 50px;
-    padding: 5px;
+    padding: 0 20px;
 }
 
 #post-body {
     text-align: left;
     padding: 10px;
     color: rgb(81, 32, 32);
+    font-size: 20px;
 }
 
 #form-container {

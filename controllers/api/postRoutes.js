@@ -20,10 +20,9 @@ router.delete('/:id', withAuth, async (req, res) => {
       const postData = await Post.destroy({
         where: {
           id: req.params.id,
-          user_id: req.session.user_id,
+          user_id: req.session.user_id
         },
       });
-  
       if (!postData) {
         res.status(404).json({ message: 'No post found with this id!' });
         return;
@@ -62,7 +61,6 @@ router.delete('/:id', withAuth, async (req, res) => {
         ...req.body,
         user_id: req.session.user_id,
     });
-    console.log(newComment)
       res.status(200).json(newComment)
     } catch (err) {
       res.status(500).json(err)
