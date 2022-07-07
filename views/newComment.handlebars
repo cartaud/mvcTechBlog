@@ -1,0 +1,19 @@
+<div id="post-container">
+    <div id="post-header">
+        <h1>{{title}}</h1>
+        <p id="post-date">Posted by {{user.username}} on {{format_date updated_at}}</p>
+    </div>
+    <div id="post-body">{{body}}</div>
+</div>
+
+<div id="post-container">
+    <div id="post-header"></div>
+    <div id="post-body">
+        <label for="comment-textbox">Comment</label>
+        <textarea id="comment-textbox"></textarea>
+        <button class="btn btn-primary" type="submit" id="comment-btn" data-postId={{id}}>Comment</button>
+    </div>
+</div>
+
+
+<script src="/js/comment.js"></script>

@@ -1,10 +1,9 @@
 const router = require('express').Router();
-const { Post } = require('../../models');
+const { Post, Comments } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.post('/', async (req, res) => {
     try {
-      console.log(req.body, req.session.user_id)
         const newPost = await Post.create({
             ...req.body,
             user_id: req.session.user_id,
@@ -38,7 +37,6 @@ router.delete('/:id', withAuth, async (req, res) => {
 
   router.put('/:id', withAuth, async (req, res) => {
     try {
-      console.log(req.body)
       const projectData = await Post.update(req.body, {
         where: {
             id: req.params.id,
@@ -58,8 +56,17 @@ router.delete('/:id', withAuth, async (req, res) => {
     }
   });
 
-
+  router.post('/comment', withAuth, async (req, res) => {
+    try {
+      const newComment = await Comments.create({
+        ...req.body,
+        user_id: req.session.user_id,
+    });
+    console.log(newComment)
+      res.status(200).json(newComment)
+    } catch (err) {
+      res.status(500).json(err)
+    }
+  });
 
 module.exports = router
-
-//create new folder in api called dashboard with /new, /edit/:id routes 
