@@ -1,7 +1,8 @@
-<div id="post-container">
+<div id="home">
+    <div id="post-container">
     <div id="post-header">
         <h1>{{post.title}}</h1>
-        <p id="post-date">Posted by {{post.user.username}} on {{format_date post.updated_at}}</p>
+        <span id="post-date">Posted by {{post.user.username}} on {{format_date post.updated_at}}</span>
     </div>
     <div id="post-body">{{post.body}}</div>
 </div>
@@ -15,3 +16,4 @@
     </div>
 </div>
 {{/each}}
+</div>
