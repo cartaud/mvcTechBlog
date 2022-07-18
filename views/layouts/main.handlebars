@@ -13,9 +13,10 @@
             <nav> 
                 <a href="/">Home</a>
                 <a href="/dashboard">Dashboard</a>
-                <a href="/login">Login</a>
                 {{#if logged_in}}
                 <a href="/dashboard" id="logout">Logout</a>
+                {{else}}
+                <a href="/login">Login</a>
                 {{/if}}
             </nav>
            <h1>The Tech Blog</h1>

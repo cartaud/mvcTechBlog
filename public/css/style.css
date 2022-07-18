@@ -1,8 +1,13 @@
 html,
 body {
-  height: 100%;
   margin: 0;
   padding: 0;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 header {
@@ -50,14 +55,17 @@ button {
     padding: 5px;
 }
 
+#home {
+    width: 75%;
+}
+
 #post-container {
-    margin: 10px 20px;
+    margin: 20px;
     border: 3px solid black ;
     display: flex;
     flex-direction: column;
     padding-bottom: 10px;
 }
-
 
 #post-container a {
     text-decoration: none;
@@ -74,17 +82,18 @@ button {
 
 #post-body {
     text-align: left;
-    padding: 10px;
+    padding: 12px;
     color: rgb(81, 32, 32);
     font-size: 20px;
 }
 
 #form-container {
-    margin: 10px 20px;
+    margin: 20px;
     border: 3px solid black ;
     display: flex;
     flex-direction: column;
     padding-bottom: 10px;
+    width: 30%;
 }
 
 #form-container h2 {
@@ -130,6 +139,16 @@ button {
     margin-bottom: 10px;
 }
 
+#posts-wrap {
+    width: 100%;
+}
+
+#edit-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 #new-post {
     background-color: rgb(81, 32, 32);
     padding: 10px;
@@ -137,10 +156,12 @@ button {
     display: flex;
     justify-content: center;
     position: fixed;
-    left: 45%;
     top: 90%;
-    width: 10%;
-    
+    width: 10%; 
+}
+
+#comment-wrap {
+    width: 50%;
 }
 
 #comment-textbox {
@@ -162,11 +183,66 @@ button {
     color: grey;
 }
 
+.edit-post {
+    margin: 20px;
+    border: 3px solid black ;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    width: 50%;
+}
+
+.edit-post h2 {
+    background-color: rgb(81, 32, 32);
+    margin-top: 0;
+    padding: 10px;
+    color: tan;
+}
+
 main {
     height: 100%;
     padding-top: 10px;
 }
 
+@media screen and (max-width: 480px) {
+    #form-container {
+        width: 100%;
+    }
+
+    #post-header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #post-header h1{
+        font-size: 20px;
+    }
+
+    #post-header span,
+    #post-body,
+    .comment-links a{
+        font-size: 12px;
+    }
+
+    #comment-wrap,
+    .edit-post {
+        width: 100%;
+    }
+
+    #new-post {
+        width: 30%;
+    }
+
+    header h1 {
+        font-size: 18px;
+        padding: 10px;
+        width: 25%;
+    }
+
+    header nav {
+        font-size: 15px;
+    }
+}
 
 
 
